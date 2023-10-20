@@ -1,16 +1,16 @@
 {
-	"id": "your-module-name",
-	"name": "your-module-name",
-	"shortname": "module-shortname",
+	"id": "magewell-director",
+	"name": "magewell-director",
+	"shortname": "Director Mini",
 	"description": "A short one line description of your module",
-	"version": "0.0.0",
+	"version": "0.0.5",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-your-module-name.git",
-	"bugs": "https://github.com/bitfocus/companion-module-your-module-name/issues",
+	"repository": "git+https://github.com/bitfocus/companion-module-magewell-director.git",
+	"bugs": "https://github.com/bitfocus/companion-module-magewell-director/issues",
 	"maintainers": [
 		{
-			"name": "Your name",
-			"email": "Your email"
+			"name": "Joel Krauska",
+			"email": "jkrauska@gmail.com"
 		}
 	],
 	"runtime": {
@@ -20,7 +20,7 @@
 		"entrypoint": "../main.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "Your company",
-	"products": ["Your product"],
-	"keywords": []
+	"manufacturer": "Magewell",
+	"products": ["Director Mini"],
+	"keywords": ["Magewell", "Director Mini", "Mini"]
 }

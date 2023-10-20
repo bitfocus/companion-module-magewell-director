@@ -4,10 +4,10 @@ const UpdateActions = require('./actions')
 const UpdateFeedbacks = require('./feedbacks')
 const UpdateVariableDefinitions = require('./variables')
 
-class ModuleInstance extends InstanceBase {
-	constructor(internal) {
-		super(internal)
-	}
+class DirectorInstance extends InstanceBase {
+	//   constructor (internal) {
+	//     super(internal)
+	//   }
 
 	async init(config) {
 		this.config = config
@@ -18,6 +18,7 @@ class ModuleInstance extends InstanceBase {
 		this.updateFeedbacks() // export feedbacks
 		this.updateVariableDefinitions() // export variable definitions
 	}
+
 	// When module gets deleted
 	async destroy() {
 		this.log('debug', 'destroy')
@@ -33,15 +34,20 @@ class ModuleInstance extends InstanceBase {
 			{
 				type: 'textinput',
 				id: 'host',
-				label: 'Target IP',
+				label: 'Director Mini IP',
 				width: 8,
 				regex: Regex.IP,
+				default: '192.168.7.146',
 			},
 			{
-				type: 'textinput',
-				id: 'port',
-				label: 'Target Port',
-				width: 4,
+				type: 'number',
+				id: 'httpPort',
+				label: 'Port',
+				width: 6,
+				default: 8080,
+				min: 1,
+				max: 65535,
+				step: 1,
 				regex: Regex.PORT,
 			},
 		]
@@ -60,4 +66,4 @@ class ModuleInstance extends InstanceBase {
 	}
 }
 
-runEntrypoint(ModuleInstance, UpgradeScripts)
+runEntrypoint(DirectorInstance, UpgradeScripts)
