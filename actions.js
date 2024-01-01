@@ -1,5 +1,24 @@
 const API = require('./api.js')
 
+const INDEXES_1_TO_100 = [
+	{
+		id: 'index',
+		type: 'number',
+		label: 'Index',
+		default: 1,
+		min: 1,
+		max: 100,
+	},
+]
+
+const TEXT_INPUT_NAME = [
+	{
+		id: 'name',
+		type: 'textinput',
+		label: 'Name',
+	},
+]
+
 module.exports = function (self) {
 	self.setActionDefinitions({
 		// BGM Actions (Section 2)
@@ -68,16 +87,7 @@ module.exports = function (self) {
 		gfx_on_by_index: {
 			name: 'GFX On By Index',
 			description: 'Use the interface to enable GFX by index.',
-			options: [
-				{
-					id: 'index',
-					type: 'number',
-					label: 'Index',
-					default: 0,
-					min: 0,
-					max: 100,
-				},
-			],
+			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
 				const cmd = `gfx/actionByIndex?index=${_action.options.index}&on=true`
 				const connection = new API(self.config)
@@ -87,16 +97,7 @@ module.exports = function (self) {
 		gfx_off_by_index: {
 			name: 'GFX Off By Index',
 			description: 'Use the interface to disable GFX by index.',
-			options: [
-				{
-					id: 'index',
-					type: 'number',
-					label: 'Index',
-					default: 0,
-					min: 0,
-					max: 100,
-				},
-			],
+			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
 				const cmd = `gfx/actionByIndex?index=${_action.options.index}&on=false`
 				const connection = new API(self.config)
@@ -107,13 +108,7 @@ module.exports = function (self) {
 		gfx_on_by_name: {
 			name: 'GFX On By Name',
 			description: 'Use the interface to enable GFX by name.',
-			options: [
-				{
-					id: 'name',
-					type: 'textinput',
-					label: 'Name',
-				},
-			],
+			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
 				const cmd = `gfx/actionByName?name=${_action.options.name}&on=true`
 				const connection = new API(self.config)
@@ -123,13 +118,7 @@ module.exports = function (self) {
 		gfx_off_by_name: {
 			name: 'GFX Off By Name',
 			description: 'Use the interface to disable GFX by name.',
-			options: [
-				{
-					id: 'name',
-					type: 'textinput',
-					label: 'Name',
-				},
-			],
+			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
 				const cmd = `gfx/actionByName?name=${_action.options.name}&on=false`
 				const connection = new API(self.config)
@@ -349,30 +338,11 @@ module.exports = function (self) {
 				await connection.sendRequest(cmd)
 			},
 		},
-		stop_all: {
-			name: 'Stop All',
-			description: 'Stop all ongoing streaming services',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'scene/stopAll'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
 
 		switch_by_index: {
 			name: 'Switch By Index',
 			description: 'Switch the current scene by index',
-			options: [
-				{
-					id: 'index',
-					type: 'number',
-					label: 'Index',
-					default: 0,
-					min: 0,
-					max: 100,
-				},
-			],
+			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
 				const cmd = `scene/switchByIndex?index=${_action.options.index}`
 				const connection = new API(self.config)
@@ -382,13 +352,7 @@ module.exports = function (self) {
 		switch_by_name: {
 			name: 'Switch By Name',
 			description: 'Switch the current scene by name',
-			options: [
-				{
-					id: 'name',
-					type: 'textinput',
-					label: 'Name',
-				},
-			],
+			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
 				const cmd = `scene/switchByName?name=${_action.options.name}`
 				const connection = new API(self.config)
@@ -397,10 +361,61 @@ module.exports = function (self) {
 		},
 
 		// Stream (Section 10)
+		stream_start_by_index: {
+			name: 'Stream Start By Index',
+			description: 'Start the Stream by index',
+			options: INDEXES_1_TO_100,
+			callback: async (_action) => {
+				const cmd = `stream/actionByIndex?index=${_action.options.index}&start=true`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		stream_stop_by_index: {
+			name: 'Stream Stop By Index',
+			description: 'Stop the Stream by Index',
+			options: INDEXES_1_TO_100,
+			callback: async (_action) => {
+				const cmd = `stream/actionByIndex?index=${_action.options.index}&start=false`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		stream_start_by_name: {
+			name: 'Stream Start By Name',
+			description: 'Start the Stream by Name',
+			options: TEXT_INPUT_NAME,
+			callback: async (_action) => {
+				const cmd = `stream/actionByName?name=${_action.options.name}&start=true`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		stream_stop_by_name: {
+			name: 'Stream Stop By Name',
+			description: 'Stop the Stream by Name',
+			options: TEXT_INPUT_NAME,
+			callback: async (_action) => {
+				const cmd = `stream/actionByName?name=${_action.options.name}&start=false`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		stream_stop_all: {
+			name: 'Stream Stop All',
+			description: 'Stop All Streaming Services',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'stream/stopAll'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
 
 		// System Actions (Section 11)
 		reboot: {
-			name: 'Reboot',
+			name: 'Reboot Director',
 			description: 'Reboot the device',
 			options: [],
 			callback: async (_action) => {
@@ -410,7 +425,7 @@ module.exports = function (self) {
 			},
 		},
 		shutdown: {
-			name: 'Shutdown',
+			name: 'Shutdown Director',
 			description: 'Power off the device',
 			options: [],
 			callback: async (_action) => {

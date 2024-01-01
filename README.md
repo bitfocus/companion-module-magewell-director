@@ -29,6 +29,7 @@ FIXME: To be Done
 - Pause, Play, and Reset
 
 ### Record (Section 7)
+
 - Screenshot, Start, Stop
 
 ### Scene (Section 8)
@@ -45,7 +46,8 @@ FIXME: To be Done
 
 ### Stream (Section 10)
 
-FIXME: To be Done
+- Toggle On/Off By Index or Name
+- Stop All
 
 ### System (Section 11)
 
