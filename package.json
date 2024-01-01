@@ -1,10 +1,12 @@
 {
 	"name": "magewell-director",
-	"version": "0.0.4",
+	"version": "0.0.9",
 	"main": "main.js",
 	"scripts": {
 		"format": "prettier -w .",
-		"dev": "yarn build:watch"
+		"dev": "yarn build:watch",
+		"lint:raw": "eslint --ext .ts --ext .js --ignore-pattern dist --ignore-pattern pkg",
+		"lint": "yarn lint:raw ."
 	},
 	"license": "MIT",
 	"repository": {

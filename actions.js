@@ -233,7 +233,6 @@ module.exports = function (self) {
 			},
 		},
 
-
 		first_bgm: {
 			name: 'First BGM',
 			description: 'Jump to the first BGM',
@@ -320,7 +319,7 @@ module.exports = function (self) {
 				{
 					id: 'name',
 					type: 'textinput',
-					label: 'Name'
+					label: 'Name',
 				},
 			],
 			callback: async (_action) => {
