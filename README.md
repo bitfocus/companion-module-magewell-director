@@ -20,7 +20,7 @@ Read [Magewell Director Mini API](https://www.magewell.com/api-docs/director-min
 
 FIXME: To be Done
 
-### Timer (Section 5)
+### Timer - Countdown Timer (Section 5)
 
 - Pause, Play, and Reset
 
