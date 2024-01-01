@@ -207,7 +207,7 @@ module.exports = function (self) {
 		},
 
 		// Scene Actions (Section 8)
-		next_scene: {
+		scene_next: {
 			name: 'Next Scene',
 			description: 'Go to next scene',
 			callback: async (_action) => {
@@ -215,7 +215,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/next')
 			},
 		},
-		previous_scene: {
+		scene_previous: {
 			name: 'Previous Scene',
 			description: 'Go to previous scene',
 			callback: async (_action) => {
@@ -223,7 +223,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/previous')
 			},
 		},
-		first_scene: {
+		scene_first: {
 			name: 'First Scene',
 			description: 'Go to first scene',
 			callback: async (_action) => {
@@ -231,7 +231,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/first')
 			},
 		},
-		last_scene: {
+		scene_last: {
 			name: 'Last Scene',
 			description: 'Go to last scene',
 			callback: async (_action) => {
@@ -239,7 +239,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/last')
 			},
 		},
-		freeze_scene: {
+		scene_freeze: {
 			name: 'Freeze Scene',
 			description: 'Freeze the current scene',
 			callback: async (_action) => {
@@ -247,7 +247,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/freeze')
 			},
 		},
-		unfreeze_scene: {
+		scene_unfreeze: {
 			name: 'Unfreeze Scene',
 			description: 'Unfreeze the current scene',
 			callback: async (_action) => {
@@ -255,7 +255,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/unfreeze')
 			},
 		},
-		play_video: {
+		scene_play_video: {
 			name: 'Play Video',
 			description: 'Play the video of the current scene',
 			callback: async (_action) => {
@@ -263,7 +263,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/playVideo')
 			},
 		},
-		pause_video: {
+		scene_pause_video: {
 			name: 'Pause Video',
 			description: 'Pause the video of the current scene',
 			callback: async (_action) => {
@@ -271,7 +271,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/pauseVideo')
 			},
 		},
-		toggle_off_ftb: {
+		scene_toggle_off_ftb: {
 			name: 'Toggle Off FTB',
 			description: 'Disable the FTB',
 			callback: async (_action) => {
@@ -279,7 +279,7 @@ module.exports = function (self) {
 				await connection.sendRequest('scene/toggleOffFTB')
 			},
 		},
-		toggle_on_ftb: {
+		scene_toggle_on_ftb: {
 			name: 'Toggle On FTB',
 			description: 'Enable the FTB',
 			callback: async (_action) => {
@@ -288,7 +288,7 @@ module.exports = function (self) {
 			},
 		},
 
-		switch_by_index: {
+		scene_switch_by_index: {
 			name: 'Scene Switch By Index',
 			description: 'Switch the current scene by index',
 			options: INDEXES_1_TO_100,
@@ -298,7 +298,7 @@ module.exports = function (self) {
 				await connection.sendRequest(cmd)
 			},
 		},
-		switch_by_name: {
+		scene_switch_by_name: {
 			name: 'Scene Switch By Name',
 			description: 'Switch the current scene by name',
 			options: TEXT_INPUT_NAME,
@@ -309,6 +309,26 @@ module.exports = function (self) {
 			},
 		},
 		// Show (Section 9)
+		show_switch_by_index: {
+			name: 'Show Switch By Index',
+			description: 'Switch the current show by index',
+			options: INDEXES_1_TO_100,
+			callback: async (_action) => {
+				const cmd = `show/switchByIndex?index=${_action.options.index}`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		show_switch_by_name: {
+			name: 'Show Switch By Name',
+			description: 'Switch the current show by name',
+			options: TEXT_INPUT_NAME,
+			callback: async (_action) => {
+				const cmd = `show/switchByName?name=${_action.options.name}`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
 
 		// Stream (Section 10)
 		stream_start_by_index: {
@@ -378,5 +398,14 @@ module.exports = function (self) {
 				await connection.sendRequest('system/shutdown')
 			},
 		},
+
+		// Volume Actions (Section 12)
+		// monitorMicInput
+		// setMonitorDevice
+		// setState
+		// setStreamAudioState
+		// setStreamAudioVolume
+		// setVolume
+
 	})
 }
