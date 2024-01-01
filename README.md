@@ -1,8 +1,13 @@
 # companion-module-magewell-director
 
-Controls a Magewell Director Mini device.
+Controls a [Magewell Director Mini](https://www.magewell.com/director-mini) swithching/encoding/streaming device.
+
+APIs in this code apply to Director Mini (Firmware version: 2.3.576).
 
 Read [Magewell Director Mini API](https://www.magewell.com/api-docs/director-mini-api/) for more information.
+
+
+## API's Covered
 
 ### BGM
 - First BGM
