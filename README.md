@@ -1,42 +1,64 @@
 # companion-module-magewell-director
 
 Controls a Magewell Director Mini device.
-(and potentially other future Magewell Director devices)
 
-API Documented Here:
+Read [Magewell Director Mini API](https://www.magewell.com/api-docs/director-mini-api/) for more information.
 
-https://magewell.com/api-docs/director-mini-api/
+### BGM
+- First BGM
+- Last BGM
+- Next BGM
+- Pause BGM
+- Play BGM
+- Previous BGM
 
+### GFX
+- Clear GFX
 
-### API Endpoints to implement
+### Scoreboard
+N/A
 
+### Timer
+- Pause Timer
+- Play Timer
+- Reset Timer
 
-Sorted by priority
+### Stopwatch
+- Pause Stopwatch
+- Play Stopwatch
+- Reset Stopwatch
 
-#### Scene Switching
+### Record
+- Screenshot
+- Start Recording
+- Stop Recording
 
-Done:
-first,last,next,previous
+### Scene
+- First Scene
+- Freeze Scene
+- Last Scene
+- Next Scene
+- Pause Video
+- Play Video
+- Previous Scene
+- Switch By Index
+- Switch By Name
+- Toggle Off FTB
+- Toggle On FTB
+- Unfreeze Scene
 
-Todo:
-switchByIndex?index=0
-switchByName?name=scene1
+### Show
+N/A
 
-#### Record
+### Stream
+N/A
 
-#### Stream
+### System
+- Reboot
+- Shutdown
 
-#### Volume
-
-#### GFX
-
-#### BGM
-
-#### System
-
-### Learn?
-
-Upgrade scripts (avoids breaking changes)
+### Volume
+N/A
 
 See [HELP.md](./companion/HELP.md) and [LICENSE](./LICENSE)
 
