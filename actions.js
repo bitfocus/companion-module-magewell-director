@@ -2,6 +2,253 @@ const API = require('./api.js')
 
 module.exports = function (self) {
 	self.setActionDefinitions({
+		// BGM Actions (Section 2)
+		bgm_first: {
+			name: 'BGM First',
+			description: 'Jump to the first BGM',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'bgm/first'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		bgm_last: {
+			name: 'BGM Last',
+			description: 'Jump to the last BGM',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'bgm/last'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		bgm_next: {
+			name: 'BGM Next',
+			description: 'Jump to the next BGM',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'bgm/next'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		bgm_pause: {
+			name: 'BGM Pause',
+			description: 'Pause the BGM',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'bgm/pause'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		bgm_play: {
+			name: 'BGM Play',
+			description: 'Play the BGM',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'bgm/play'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		bgm_previous: {
+			name: 'BGM Previous',
+			description: 'Jump to the previous BGM',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'bgm/previous'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		// GFX Actions (Section 3)
+		gfx_on_by_index: {
+			name: 'GFX On By Index',
+			description: 'Use the interface to enable GFX by index.',
+			options: [
+				{
+					id: 'index',
+					type: 'number',
+					label: 'Index',
+					default: 0,
+					min: 0,
+					max: 100,
+				},
+			],
+			callback: async (_action) => {
+				const cmd = `gfx/actionByIndex?index=${_action.options.index}&on=true`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		gfx_off_by_index: {
+			name: 'GFX Off By Index',
+			description: 'Use the interface to disable GFX by index.',
+			options: [
+				{
+					id: 'index',
+					type: 'number',
+					label: 'Index',
+					default: 0,
+					min: 0,
+					max: 100,
+				},
+			],
+			callback: async (_action) => {
+				const cmd = `gfx/actionByIndex?index=${_action.options.index}&on=false`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		gfx_on_by_name: {
+			name: 'GFX On By Name',
+			description: 'Use the interface to enable GFX by name.',
+			options: [
+				{
+					id: 'name',
+					type: 'textinput',
+					label: 'Name',
+				},
+			],
+			callback: async (_action) => {
+				const cmd = `gfx/actionByName?name=${_action.options.name}&on=true`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		gfx_off_by_name: {
+			name: 'GFX Off By Name',
+			description: 'Use the interface to disable GFX by name.',
+			options: [
+				{
+					id: 'name',
+					type: 'textinput',
+					label: 'Name',
+				},
+			],
+			callback: async (_action) => {
+				const cmd = `gfx/actionByName?name=${_action.options.name}&on=false`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		gfx_clear: {
+			name: 'GFX Clear',
+			description: 'Turn off all GFXs',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'gfx/clear'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		// Scoreboard Actions (Section 4)
+		// FIXME: TO BE IMPLEMENTED
+		// LOTS of Stuff here
+
+		// Timer Actions (Section 5)
+		timer_pause: {
+			name: 'Timer Pause',
+			description: 'Pause the timer',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'countdown/pause'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		timer_play: {
+			name: 'Timer Play',
+			description: 'Start or resume the timer',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'countdown/play'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		timer_reset: {
+			name: 'Timer Reset',
+			description: 'Reset the timer',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'countdown/reset'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		// StopWatch Actions (Section 6)
+		stopwatch_pause: {
+			name: 'Pause Stopwatch',
+			description: 'Pause the stopwatch',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'stopwatch/pause'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		stopwatch_play: {
+			name: 'Play Stopwatch',
+			description: 'Start or resume the stopwatch',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'stopwatch/play'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		stopwatch_reset: {
+			name: 'Reset Stopwatch',
+			description: 'Reset the stopwatch',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'stopwatch/reset'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		// Record Options (Section 7)
+		screenshot: {
+			name: 'Screenshot',
+			description: 'Take a screenshot of the program output',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'record/screenshot'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		start_recording: {
+			name: 'Start Recording',
+			description: 'Start recording',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'record/start'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		stop_recording: {
+			name: 'Stop Recording',
+			description: 'Stop recording',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'record/stop'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		// Scene Actions (Section 8)
 		next_scene: {
 			name: 'Next Scene',
 			description: 'Go to next scene',
@@ -112,187 +359,7 @@ module.exports = function (self) {
 				await connection.sendRequest(cmd)
 			},
 		},
-		reboot: {
-			name: 'Reboot',
-			description: 'Reboot the device',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'scene/reboot'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		shutdown: {
-			name: 'Shutdown',
-			description: 'Power off the device',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'scene/shutdown'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		screenshot: {
-			name: 'Screenshot',
-			description: 'Take a screenshot of the program output',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'record/screenshot'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		start_recording: {
-			name: 'Start Recording',
-			description: 'Start recording',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'record/start'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		stop_recording: {
-			name: 'Stop Recording',
-			description: 'Stop recording',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'record/stop'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		pause_recording: {
-			name: 'Pause Recording',
-			description: 'Pause the stopwatch',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'stopwatch/pause'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		play_stopwatch: {
-			name: 'Play Stopwatch',
-			description: 'Start or resume the stopwatch',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'stopwatch/play'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		reset_stopwatch: {
-			name: 'Reset Stopwatch',
-			description: 'Reset the stopwatch',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'stopwatch/reset'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		pause_timer: {
-			name: 'Pause Timer',
-			description: 'Pause the timer',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'countdown/pause'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		play: {
-			name: 'Play Timer',
-			description: 'Start or resume the timer',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'countdown/play'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		reset: {
-			name: 'Reset Timer',
-			description: 'Reset the timer',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'countdown/reset'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		clear_gfx: {
-			name: 'Clear GFX',
-			description: 'Turn off all GFXs',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'gfx/clear'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
 
-		first_bgm: {
-			name: 'First BGM',
-			description: 'Jump to the first BGM',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'bgm/first'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		last_bgm: {
-			name: 'Previous Scene',
-			description: 'Jump to the last BGM',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'bgm/last'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		next_bgm: {
-			name: 'First Scene',
-			description: 'Jump to the next BGM',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'bgm/next'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		pause_bgm: {
-			name: 'Last Scene',
-			description: 'Pause the BGM',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'bgm/pause'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		play_bgm: {
-			name: 'Freeze Scene',
-			description: 'Play the BGM',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'bgm/play'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
-		previous_bgm: {
-			name: 'Unfreeze Scene',
-			description: 'Jump to the previous BGM',
-			options: [],
-			callback: async (_action) => {
-				const cmd = 'bgm/previous'
-				const connection = new API(self.config)
-				await connection.sendRequest(cmd)
-			},
-		},
 		switch_by_index: {
 			name: 'Switch By Index',
 			description: 'Switch the current scene by index',
@@ -324,6 +391,30 @@ module.exports = function (self) {
 			],
 			callback: async (_action) => {
 				const cmd = `scene/switchByName?name=${_action.options.name}`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		// Stream (Section 10)
+
+		// System Actions (Section 11)
+		reboot: {
+			name: 'Reboot',
+			description: 'Reboot the device',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'system/reboot'
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		shutdown: {
+			name: 'Shutdown',
+			description: 'Power off the device',
+			options: [],
+			callback: async (_action) => {
+				const cmd = 'system/shutdown'
 				const connection = new API(self.config)
 				await connection.sendRequest(cmd)
 			},

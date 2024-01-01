@@ -6,73 +6,53 @@ APIs in this code apply to Director Mini (Firmware version: 2.3.576).
 
 Read [Magewell Director Mini API](https://www.magewell.com/api-docs/director-mini-api/) for more information.
 
-## API's Covered
+## API's Implemented
 
-### BGM
+### BGM - Background Music (Section 2)
 
-- First BGM
-- Last BGM
-- Next BGM
-- Pause BGM
-- Play BGM
-- Previous BGM
+- First, Last, Next, Pause, Play, Previous
 
-### GFX
+### GFX (Section 3)
 
-- Clear GFX
+- Toggle On/Off By Index or Name, Clear
 
-### Scoreboard
+### Scoreboard (Section 4)
 
-N/A
+FIXME: To be Done
 
-### Timer
+### Timer (Section 5)
 
-- Pause Timer
-- Play Timer
-- Reset Timer
+- Pause, Play, and Reset
 
-### Stopwatch
+### Stopwatch (Section 6)
 
-- Pause Stopwatch
-- Play Stopwatch
-- Reset Stopwatch
+- Pause, Play, and Reset
 
-### Record
+### Record (Section 7)
+- Screenshot, Start, Stop
 
-- Screenshot
-- Start Recording
-- Stop Recording
+### Scene (Section 8)
 
-### Scene
+- First, Last, Next, Pause, Play, Previous
+- Freeze, Unfreeze
+- Switch By Index and Name
+- Toggle On/Off FTB
+- FIXME: QuickSwitch, Transitions
 
-- First Scene
-- Freeze Scene
-- Last Scene
-- Next Scene
-- Pause Video
-- Play Video
-- Previous Scene
-- Switch By Index
-- Switch By Name
-- Toggle Off FTB
-- Toggle On FTB
-- Unfreeze Scene
+### Show (Section 9)
 
-### Show
+FIXME: To be Done
 
-N/A
+### Stream (Section 10)
 
-### Stream
+FIXME: To be Done
 
-N/A
+### System (Section 11)
 
-### System
-
-- Reboot
-- Shutdown
+- Reboot, Shutdown
 
 ### Volume
 
-N/A
+FIXME: To be Done
 
 See [HELP.md](./companion/HELP.md) and [LICENSE](./LICENSE)
