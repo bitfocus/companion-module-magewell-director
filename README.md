@@ -18,7 +18,7 @@ Read [Magewell Director Mini API](https://www.magewell.com/api-docs/director-min
 
 ### Scoreboard (Section 4)
 
-FIXME: To be Done
+- FIXME: To be Done
 
 ### Timer - Countdown Timer (Section 5)
 
@@ -55,6 +55,6 @@ FIXME: To be Done
 
 ### Volume
 
-FIXME: To be Done
+- FIXME: To be Done
 
 See [HELP.md](./companion/HELP.md) and [LICENSE](./LICENSE)
