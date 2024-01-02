@@ -19,6 +19,38 @@ const TEXT_INPUT_NAME = [
 	},
 ]
 
+// Audio Type	Description
+// 0x0001	Monitor
+// 0x0003	Program
+// 0x0700	HDMI 1
+// 0x0800	HDMI 2
+// 0x0200	Microphone
+// 0x0002	Video Clip
+// 0x0300	Bluetooth
+// 0x0600	BGM
+
+// Hex to Decimal
+const AUDIO_DEVICES = [
+	{
+		type: 'dropdown',
+		label: 'Audio Channel',
+		id: 'audioChannel',
+		default: '1',
+		tooltip: 'Which audio device?',
+		choices: [
+			{ id: '1', label: 'Monitor' },
+			{ id: '3', label: 'Program' },
+			{ id: '1792', label: 'HDMI 1' },
+			{ id: '2048', label: 'HDMI 2' },
+			{ id: '512', label: 'Mic' },
+			{ id: '2', label: 'Video Clip' },
+			{ id: '768', label: 'Bluetooth' },
+			{ id: '1536', label: 'BGM' },
+		],
+		minChoicesForSearch: 0,
+	},
+]
+
 module.exports = function (self) {
 	self.setActionDefinitions({
 		// BGM Actions (Section 2)
@@ -401,11 +433,53 @@ module.exports = function (self) {
 		},
 
 		// Volume Actions (Section 12)
+
 		// monitorMicInput
 		// setMonitorDevice
 		// setState
+		set_volume_mute: {
+			name: 'Volume: Mute Channel',
+			description: 'Mute an audio channel',
+			options: AUDIO_DEVICES,
+			callback: async (_action) => {
+				const cmd = `volume/setState?type=${_action.options.audioChannel}&state=1`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		set_volume_unmute: {
+			name: 'Volume: Unmute Channel',
+			description: 'Unmute an audio channel',
+			options: AUDIO_DEVICES,
+			callback: async (_action) => {
+				const cmd = `volume/setState?type=${_action.options.audioChannel}&state=0`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		set_volume_afv: {
+			name: 'Volume: Enable AFV on Channel',
+			description: 'Set an audio channel to AFV mode',
+			options: AUDIO_DEVICES,
+			callback: async (_action) => {
+				const cmd = `volume/setState?type=${_action.options.audioChannel}&state=2`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
 		// setStreamAudioState
 		// setStreamAudioVolume
 		// setVolume
+		// FIXME: relative values -40 to 10. (3db step?)
+		set_volume_zero: {
+			name: 'Volume: Set Volume',
+			description: 'Set the volume of an audio channel',
+			options: AUDIO_DEVICES,
+			callback: async (_action) => {
+				const cmd = `volume/setVolume?type=${_action.options.audioChannel}&volume=0`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
 	})
 }
