@@ -13,10 +13,13 @@ class DirectorInstance extends InstanceBase {
 		this.config = config
 
 		this.updateStatus(InstanceStatus.Ok)
-
 		this.updateActions() // export actions
 		this.updateFeedbacks() // export feedbacks
 		this.updateVariableDefinitions() // export variable definitions
+
+		this.setVariableValues({
+			VolumeStep: 2,
+		})
 	}
 
 	// When module gets deleted

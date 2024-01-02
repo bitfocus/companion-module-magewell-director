@@ -51,6 +51,22 @@ const AUDIO_DEVICES = [
 	},
 ]
 
+const MAX_VOLUME = 10
+const MIN_VOLUME = -40
+
+const AUDIO_LEVELS = [
+	{
+		id: 'volume',
+		type: 'number',
+		label: 'Volume',
+		default: 0,
+		min: MIN_VOLUME,
+		max: MAX_VOLUME,
+	},
+]
+
+const AUDIO_DEVICES_AND_LEVELS = AUDIO_DEVICES.concat(AUDIO_LEVELS)
+
 module.exports = function (self) {
 	self.setActionDefinitions({
 		// BGM Actions (Section 2)
@@ -436,7 +452,9 @@ module.exports = function (self) {
 
 		// monitorMicInput
 		// setMonitorDevice
-		// setState
+		// setStreamAudioState
+		// setStreamAudioVolume
+
 		set_volume_mute: {
 			name: 'Volume: Mute Channel',
 			description: 'Mute an audio channel',
@@ -467,16 +485,83 @@ module.exports = function (self) {
 				await connection.sendRequest(cmd)
 			},
 		},
-		// setStreamAudioState
-		// setStreamAudioVolume
-		// setVolume
-		// FIXME: relative values -40 to 10. (3db step?)
+
 		set_volume_zero: {
-			name: 'Volume: Set Volume',
-			description: 'Set the volume of an audio channel',
+			name: 'Volume: Set Volume to Zero',
+			description: 'Set the volume of an audio channel to 0 (line)',
 			options: AUDIO_DEVICES,
 			callback: async (_action) => {
 				const cmd = `volume/setVolume?type=${_action.options.audioChannel}&volume=0`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+		set_volume_level: {
+			name: 'Volume: Set Volume to a Level between -40 and 10',
+			description: 'Set the volume of an audio channel',
+			options: AUDIO_DEVICES_AND_LEVELS,
+			callback: async (_action) => {
+				const cmd = `volume/setVolume?type=${_action.options.audioChannel}&volume=${_action.options.volume}`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		volume_increase_step: {
+			name: 'Volume: Increase Volume Step',
+			description: 'Increase the volume step size for volume adjustments',
+			options: [],
+			callback: () => {
+				var newStep = self.getVariableValue('VolumeStep') + 1
+				newStep = Math.min(30, newStep)
+				self.setVariableValues({
+					VolumeStep: parseInt(newStep),
+				})
+			},
+		},
+
+		volume_decrease_step: {
+			name: 'Volume: Decrease Volume Step',
+			description: 'Decrease the volume step size for volume adjustments',
+			options: [],
+			callback: () => {
+				var newStep = self.getVariableValue('VolumeStep') - 1
+				newStep = Math.max(1, newStep)
+				self.setVariableValues({
+					VolumeStep: parseInt(newStep),
+				})
+			},
+		},
+
+		volume_increase_channel: {
+			name: 'Volume: Increase Channel Volume By Step',
+			description: 'Increase a channel volume by the step amount',
+			options: AUDIO_DEVICES,
+			callback: async (_action) => {
+				// Volume Variable hack
+				var volumeVariable = `Volume${_action.options.audioChannel}`
+				var currentVolume = self.getVariableValue(volumeVariable) ?? 0
+				var newVolume = currentVolume + self.getVariableValue('VolumeStep')
+				newVolume = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, newVolume))
+				self.setVariableValues({ [volumeVariable]: parseInt(newVolume) })
+				const cmd = `volume/setVolume?type=${_action.options.audioChannel}&volume=${newVolume}`
+				const connection = new API(self.config)
+				await connection.sendRequest(cmd)
+			},
+		},
+
+		volume_decrease_channel: {
+			name: 'Volume: Decrease Channel Volume By Step',
+			description: 'Decrease a channel volume by the step amount',
+			options: AUDIO_DEVICES,
+			callback: async (_action) => {
+				// Volume Variable hack
+				var volumeVariable = `Volume${_action.options.audioChannel}`
+				var currentVolume = self.getVariableValue(volumeVariable) ?? 0
+				var newVolume = currentVolume - self.getVariableValue('VolumeStep')
+				newVolume = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, newVolume))
+				self.setVariableValues({ [volumeVariable]: parseInt(newVolume) })
+				const cmd = `volume/setVolume?type=${_action.options.audioChannel}&volume=${newVolume}`
 				const connection = new API(self.config)
 				await connection.sendRequest(cmd)
 			},
