@@ -23,7 +23,7 @@ module.exports = function (self) {
 	self.setActionDefinitions({
 		// BGM Actions (Section 2)
 		bgm_first: {
-			name: 'BGM First',
+			name: 'BGM: First',
 			description: 'Jump to the first BGM',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -31,7 +31,7 @@ module.exports = function (self) {
 			},
 		},
 		bgm_last: {
-			name: 'BGM Last',
+			name: 'BGM: Last',
 			description: 'Jump to the last BGM',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -39,7 +39,7 @@ module.exports = function (self) {
 			},
 		},
 		bgm_next: {
-			name: 'BGM Next',
+			name: 'BGM: Next',
 			description: 'Jump to the next BGM',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -47,7 +47,7 @@ module.exports = function (self) {
 			},
 		},
 		bgm_pause: {
-			name: 'BGM Pause',
+			name: 'BGM: Pause',
 			description: 'Pause the BGM',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -55,7 +55,7 @@ module.exports = function (self) {
 			},
 		},
 		bgm_play: {
-			name: 'BGM Play',
+			name: 'BGM: Play',
 			description: 'Play the BGM',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -63,7 +63,7 @@ module.exports = function (self) {
 			},
 		},
 		bgm_previous: {
-			name: 'BGM Previous',
+			name: 'BGM: Previous',
 			description: 'Jump to the previous BGM',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -73,7 +73,7 @@ module.exports = function (self) {
 
 		// GFX Actions (Section 3)
 		gfx_on_by_index: {
-			name: 'GFX On By Index',
+			name: 'GFX: On By Index',
 			description: 'Use the interface to enable GFX by index.',
 			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
@@ -83,7 +83,7 @@ module.exports = function (self) {
 			},
 		},
 		gfx_off_by_index: {
-			name: 'GFX Off By Index',
+			name: 'GFX: Off By Index',
 			description: 'Use the interface to disable GFX by index.',
 			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
@@ -94,7 +94,7 @@ module.exports = function (self) {
 		},
 
 		gfx_on_by_name: {
-			name: 'GFX On By Name',
+			name: 'GFX: On By Name',
 			description: 'Use the interface to enable GFX by name.',
 			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
@@ -104,7 +104,7 @@ module.exports = function (self) {
 			},
 		},
 		gfx_off_by_name: {
-			name: 'GFX Off By Name',
+			name: 'GFX: Off By Name',
 			description: 'Use the interface to disable GFX by name.',
 			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
@@ -115,7 +115,7 @@ module.exports = function (self) {
 		},
 
 		gfx_clear: {
-			name: 'GFX Clear',
+			name: 'GFX: Clear',
 			description: 'Turn off all GFXs',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -130,7 +130,7 @@ module.exports = function (self) {
 		// Timer Actions (Section 5)
 		timer_pause: {
 			name: 'Timer Pause',
-			description: 'Pause the timer',
+			description: 'Pause the countdown timer',
 			callback: async (_action) => {
 				const connection = new API(self.config)
 				await connection.sendRequest('gfx/countdown/pause')
@@ -138,7 +138,7 @@ module.exports = function (self) {
 		},
 		timer_play: {
 			name: 'Timer Play',
-			description: 'Start or resume the timer',
+			description: 'Start or resume the countdown timer',
 			callback: async (_action) => {
 				const connection = new API(self.config)
 				await connection.sendRequest('gfx/countdown/play')
@@ -146,7 +146,7 @@ module.exports = function (self) {
 		},
 		timer_reset: {
 			name: 'Timer Reset',
-			description: 'Reset the timer',
+			description: 'Reset the countdown timer to initial value',
 			callback: async (_action) => {
 				const connection = new API(self.config)
 				await connection.sendRequest('gfx/countdown/reset')
@@ -156,7 +156,7 @@ module.exports = function (self) {
 		// StopWatch Actions (Section 6)
 		// Technically these are GFX calls
 		stopwatch_pause: {
-			name: 'Pause Stopwatch',
+			name: 'Stopwatch Pause',
 			description: 'Pause the stopwatch',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -164,7 +164,7 @@ module.exports = function (self) {
 			},
 		},
 		stopwatch_play: {
-			name: 'Play Stopwatch',
+			name: 'Stopwatch Play',
 			description: 'Start or resume the stopwatch',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -172,8 +172,8 @@ module.exports = function (self) {
 			},
 		},
 		stopwatch_reset: {
-			name: 'Reset Stopwatch',
-			description: 'Reset the stopwatch',
+			name: 'Stopwatch Reset',
+			description: 'Reset the stopwatch to zero',
 			callback: async (_action) => {
 				const connection = new API(self.config)
 				await connection.sendRequest('gfx/stopwatch/reset')
@@ -208,7 +208,7 @@ module.exports = function (self) {
 
 		// Scene Actions (Section 8)
 		scene_next: {
-			name: 'Next Scene',
+			name: 'Scene: Next',
 			description: 'Go to next scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -216,7 +216,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_previous: {
-			name: 'Previous Scene',
+			name: 'Scene: Previous',
 			description: 'Go to previous scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -224,7 +224,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_first: {
-			name: 'First Scene',
+			name: 'Scene: First',
 			description: 'Go to first scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -232,7 +232,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_last: {
-			name: 'Last Scene',
+			name: 'Scene: Last',
 			description: 'Go to last scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -240,7 +240,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_freeze: {
-			name: 'Freeze Scene',
+			name: 'Scene: Freeze',
 			description: 'Freeze the current scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -248,7 +248,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_unfreeze: {
-			name: 'Unfreeze Scene',
+			name: 'Scene: Unfreeze',
 			description: 'Unfreeze the current scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -256,7 +256,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_play_video: {
-			name: 'Play Video',
+			name: 'Scene: Play Video',
 			description: 'Play the video of the current scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -264,7 +264,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_pause_video: {
-			name: 'Pause Video',
+			name: 'Scene: Pause Video',
 			description: 'Pause the video of the current scene',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -272,16 +272,16 @@ module.exports = function (self) {
 			},
 		},
 		scene_toggle_off_ftb: {
-			name: 'Toggle Off FTB',
-			description: 'Disable the FTB',
+			name: 'Scene: Toggle Off FTB',
+			description: 'Disable Fade To Black',
 			callback: async (_action) => {
 				const connection = new API(self.config)
 				await connection.sendRequest('scene/toggleOffFTB')
 			},
 		},
 		scene_toggle_on_ftb: {
-			name: 'Toggle On FTB',
-			description: 'Enable the FTB',
+			name: 'Scene: Toggle On FTB',
+			description: 'Enable Fade To Black',
 			callback: async (_action) => {
 				const connection = new API(self.config)
 				await connection.sendRequest('scene/toggleOnFTB')
@@ -289,7 +289,7 @@ module.exports = function (self) {
 		},
 
 		scene_switch_by_index: {
-			name: 'Scene Switch By Index',
+			name: 'Scene: Switch By Index',
 			description: 'Switch the current scene by index',
 			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
@@ -299,7 +299,7 @@ module.exports = function (self) {
 			},
 		},
 		scene_switch_by_name: {
-			name: 'Scene Switch By Name',
+			name: 'Scene: Switch By Name',
 			description: 'Switch the current scene by name',
 			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
@@ -308,9 +308,10 @@ module.exports = function (self) {
 				await connection.sendRequest(cmd)
 			},
 		},
+
 		// Show (Section 9)
 		show_switch_by_index: {
-			name: 'Show Switch By Index',
+			name: 'Show: Switch By Index',
 			description: 'Switch the current show by index',
 			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
@@ -320,7 +321,7 @@ module.exports = function (self) {
 			},
 		},
 		show_switch_by_name: {
-			name: 'Show Switch By Name',
+			name: 'Show: Switch By Name',
 			description: 'Switch the current show by name',
 			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
@@ -332,7 +333,7 @@ module.exports = function (self) {
 
 		// Stream (Section 10)
 		stream_start_by_index: {
-			name: 'Stream Start By Index',
+			name: 'Stream: Start By Index',
 			description: 'Start the Stream by index',
 			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
@@ -342,7 +343,7 @@ module.exports = function (self) {
 			},
 		},
 		stream_stop_by_index: {
-			name: 'Stream Stop By Index',
+			name: 'Stream: Stop By Index',
 			description: 'Stop the Stream by Index',
 			options: INDEXES_1_TO_100,
 			callback: async (_action) => {
@@ -353,7 +354,7 @@ module.exports = function (self) {
 		},
 
 		stream_start_by_name: {
-			name: 'Stream Start By Name',
+			name: 'Stream: Start By Name',
 			description: 'Start the Stream by Name',
 			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
@@ -363,7 +364,7 @@ module.exports = function (self) {
 			},
 		},
 		stream_stop_by_name: {
-			name: 'Stream Stop By Name',
+			name: 'Stream: Stop By Name',
 			description: 'Stop the Stream by Name',
 			options: TEXT_INPUT_NAME,
 			callback: async (_action) => {
@@ -373,7 +374,7 @@ module.exports = function (self) {
 			},
 		},
 		stream_stop_all: {
-			name: 'Stream Stop All',
+			name: 'Stream: Stop All',
 			description: 'Stop All Streaming Services',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -383,7 +384,7 @@ module.exports = function (self) {
 
 		// System Actions (Section 11)
 		reboot: {
-			name: 'Reboot Director',
+			name: 'System: Reboot Director',
 			description: 'Reboot the device',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -391,7 +392,7 @@ module.exports = function (self) {
 			},
 		},
 		shutdown: {
-			name: 'Shutdown Director',
+			name: 'System: Shutdown Director',
 			description: 'Power off the device',
 			callback: async (_action) => {
 				const connection = new API(self.config)
@@ -406,6 +407,5 @@ module.exports = function (self) {
 		// setStreamAudioState
 		// setStreamAudioVolume
 		// setVolume
-
 	})
 }
