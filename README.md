@@ -55,6 +55,8 @@ Read [Magewell Director Mini API](https://www.magewell.com/api-docs/director-min
 
 ### Volume
 
-- FIXME: To be Done
+- Mute, Unmute, AFV Toggle, Set to level 0, Set explicit level per channel.
+- Raise/Lower Volume levels on main inputs (HDMI, MIC) (using awkward variables and defaulting to 0)
+- FIXME:  To be done: monitorMicInput, setMonitorDevice, setStreamAudioState, setStreamAudioVolume
 
 See [HELP.md](./companion/HELP.md) and [LICENSE](./LICENSE)
