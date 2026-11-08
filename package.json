@@ -14,11 +14,11 @@
 		"url": "git+https://github.com/bitfocus/companion-module-magewell-director.git"
 	},
 	"dependencies": {
-		"@companion-module/base": "~1.5.1",
+		"@companion-module/base": "~1.15.1",
 		"axios": "^1.20.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^2.8.0",
+		"@companion-module/tools": "^2.9.0",
 		"@types/jest": "^29.4.0",
 		"@types/node": "^18.13.0",
 		"eslint": "^8.0.1",
